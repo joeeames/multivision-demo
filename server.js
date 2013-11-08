@@ -41,6 +41,6 @@ require('./server/config/routes')(app);
 //  res.render('index')
 //});
 
-var port = 3003;
+var port = process.env.PORT || 3003;
 app.listen(port);
 console.log('Listening on port ' + port + '...');
