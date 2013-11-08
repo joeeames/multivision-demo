@@ -1,0 +1,22 @@
+{
+  "name": "MultiVision",
+  "version": "0.0.1",
+  "homepage": "https://github.com/joeeames/multivision-demo",
+  "authors": [
+    "joeeames <joeeames@gmail.com>"
+  ],
+  "description": "Extreme Tech Training",
+  "keywords": [
+    "training"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.0-rc.2",
+    "angular-resource": "1.2.0-rc.2",
+    "angular-route": "1.2.0-rc.2",
+    "toastr": "~2.0.1",
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2"
+  }
+}
