@@ -20,7 +20,7 @@ app.configure(function() {
       compile: compile
     }
   ));
-  app.use(express.static(__dirname + '/client'));
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function() {
