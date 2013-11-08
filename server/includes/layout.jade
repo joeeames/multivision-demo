@@ -1,0 +1,14 @@
+!!!5
+html
+  head
+    link(href='/favicon.ico', rel='shortcut icon', type='image/x-icon')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/toastr.css')
+    link(rel='stylesheet', href='/css/site.css')
+
+  body(ng-app='app')
+
+    section.content
+      section.container
+        div(ng-view)
+    include scripts
