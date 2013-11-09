@@ -1,4 +1,5 @@
-.well
-  h4.text-center Featured Courses
-  .row(ng-repeat="course in courses | filter:{featured:true}")
-    .col-md-12 {{course.name}}
+.panel.panel-primary
+  .panel-heading.text-center Featured Courses
+  .panel-body
+    .row(ng-repeat="course in courses | filter:{featured:true}")
+      .col-md-12 {{course.name}}

@@ -1,1 +1,1 @@
-<div class="well"><h4 class="text-center">New Courses</h4><div ng-repeat="course in courses | orderBy:'published':true | limitTo:10 " class="row"><div class="col-md-3">{{course.published | date:'MMM d'}}</div><div class="col-md-9">{{course.name}}</div></div></div>
+<div class="panel panel-primary"><div class="panel-heading">New Courses</div><div class="panel-body"><div ng-repeat="course in courses | orderBy:'published':true | limitTo:10 " class="row"><div class="col-md-3">{{course.published | date:'MMM d'}}</div><div class="col-md-9">{{course.name}}</div></div></div></div>
