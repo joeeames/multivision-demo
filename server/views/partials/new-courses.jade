@@ -1,4 +1,4 @@
-.well.sidebar-nav
+.well
   h4.text-center New Courses
   .row(ng-repeat="course in courses | orderBy:'published':true | limitTo:10 ")
     .col-md-3 {{course.published | date:'MMM d'}}
