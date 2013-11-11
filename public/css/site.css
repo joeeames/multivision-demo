@@ -18,6 +18,12 @@ footer p {
 .navbar-header a.navbar-brand h6 {
   color: #ccc;
 }
+.navbar-form .form-group {
+  margin-left: 10px;
+}
+.navbar-form button {
+  margin-left: 10px;
+}
 DIV.scrollable {
   overflow-y: scroll;
   overflow-x: scroll;

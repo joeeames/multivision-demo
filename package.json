@@ -19,6 +19,7 @@
     "jade": "~0.35.0",
     "underscore": "~1.5.2",
     "passport-google-oauth": "~0.1.5",
-    "stylus": "*"
+    "stylus": "*",
+    "passport-local": "~0.1.6"
   }
 }
