@@ -46,16 +46,19 @@ passport.use(new LocalStrategy(
     if(matchingUser) {
       return done(null, matchingUser);
     } else {
-      return done(null, {_id:-1});
+      return done(null, false);
     }
   }
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user._id)
+  if(user) {
+    done(null, user._id)
+  }
 })
 
 passport.deserializeUser(function(id, done) {
+  console.log('deserializing: ' + id);
   var matchingUser;
   Users.forEach(function(user) {
     if(user._id == id) {
@@ -75,23 +78,24 @@ var requiresLogin = function (req, res, next) {
 };
 
 app.post('/login', function(req, res, next) {
-  console.log('0');
   var auth = passport.authenticate('local', function(err, user, info) {
-    console.log('1');
-    console.log(err);
-    console.log(user);
     if(err) { return next(err);}
     if(!user) { res.send({success: false});}
-    console.log('good');
     req.logIn(user, function(err) {
-      console.log('1');
       if(err) { return next(err);}
-      res.send({success:true});
+      res.send({success:true, user: user});
     });
   });
-  console.log(auth);
   auth(req, res, next);
 });
+
+app.get('/postlogin', function(req, res, next) {
+  if(!req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    res.send('Success!');
+  }
+})
 
 app.configure('development', function() {
   app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
