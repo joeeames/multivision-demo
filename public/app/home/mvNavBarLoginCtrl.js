@@ -1,4 +1,4 @@
-angular.module('app').controller('mvNavBarLoginCtrl', function($scope, mvNotifier, mvUsers, mvIdentity, $http){
+angular.module('app').controller('mvNavBarLoginCtrl', function($scope, mvNotifier, mvIdentity, $http){
   $scope.identity = mvIdentity;
 
 
