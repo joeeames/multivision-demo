@@ -10,5 +10,7 @@ div.navbar-right(ng-controller="mvNavBarLoginCtrl")
       a.dropdown-toggle(href="", data-toggle="dropdown", ng-click="logout()") {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
         b.caret
       ul.dropdown-menu
+        li(ng-show="identity.currentUser.isAdmin()")
+          a(href="/admin/users") user admin
         li
           a(href="", ng-click="signout()") signout

@@ -12,9 +12,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.2.0-rc.2",
-    "angular-resource": "1.2.0-rc.2",
-    "angular-route": "1.2.0-rc.2",
+    "angular": "1.2.0",
+    "angular-resource": "1.2.0",
+    "angular-route": "1.2.0",
     "toastr": "~2.0.1",
     "jquery": "~2.0.3",
     "underscore": "~1.5.2"
