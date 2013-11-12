@@ -17,6 +17,7 @@
     "angular-route": "1.2.0",
     "toastr": "~2.0.1",
     "jquery": "~2.0.3",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "angular-mocks": "~1.2.0"
   }
 }

@@ -16,7 +16,6 @@ var Users = [
 
 require('./server/config/passport')(app, passport, Users);
 
-
 require('./server/config/routes')(app, Users);
 
 var port = process.env.PORT || 3003;

@@ -1,12 +1,11 @@
 angular.module('app', ['ngResource', 'ngRoute']);
 
-
 angular.module('app').config(function($routeProvider, $locationProvider) {
   var routeRoleChecks = {
     admin: {'auth': function(mvAuth) {
       return mvAuth.authorizeCurrentUserForRoute('admin')
     }}
-  }
+  };
 
   $locationProvider.html5Mode(true);
   $routeProvider
@@ -22,7 +21,7 @@ angular.module('app').run(function($rootScope, $location){
       $location.path('/');
     }
   })
-})
+});
 
 
 
