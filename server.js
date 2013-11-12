@@ -1,34 +1,13 @@
 var express = require('express'),
-  stylus = require('stylus'),
   passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
+  LocalStrategy = require('passport-local').Strategy,
+  config = require('./server/config/config');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 var app = express();
 
-function compile(str, path) {
-  return stylus(str).set('filename', path);
-}
-
-app.configure(function() {
-  app.set('views', __dirname + '/server/views');
-  app.set('view engine', 'jade');
-  app.use(express.logger('dev'));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-
-  app.use(express.session({ secret: 'multi vision unicorns' }));
-  app.use(passport.initialize())
-  app.use(passport.session())
-  app.use(stylus.middleware(
-    {
-      src: __dirname + '/public',
-      compile: compile
-    }
-  ));
-  app.use(express.static(__dirname + '/public'));
-});
+require('./server/config/express')(app, passport, config);
 
 var Users = [
   {_id:1,firstName:'Joe',lastName:'Eames',username:'joe',password:'joe'},
@@ -55,7 +34,7 @@ passport.serializeUser(function(user, done) {
   if(user) {
     done(null, user._id)
   }
-})
+});
 
 passport.deserializeUser(function(id, done) {
   console.log('deserializing: ' + id);
@@ -77,17 +56,10 @@ var requiresLogin = function (req, res, next) {
   next()
 };
 
-app.post('/login', function(req, res, next) {
-  var auth = passport.authenticate('local', function(err, user, info) {
-    if(err) { return next(err);}
-    if(!user) { res.send({success: false});}
-    req.logIn(user, function(err) {
-      if(err) { return next(err);}
-      res.send({success:true, user: user});
-    });
-  });
-  auth(req, res, next);
-});
+app.use(function(req, res, next) {
+  req.passport = passport;
+  next();
+})
 
 app.get('/postlogin', function(req, res, next) {
   if(!req.isAuthenticated()) {
@@ -95,25 +67,10 @@ app.get('/postlogin', function(req, res, next) {
   } else {
     res.send('Success!');
   }
-})
-
-app.configure('development', function() {
-  app.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 });
 
-app.configure('production', function() {
-  app.use(express.errorHandler());
-});
 
 require('./server/config/routes')(app);
-//
-//app.get('/partials/:partialPath', function(req, res) {
-//  res.render('partials/' + req.params.partialPath);
-//});
-//
-//app.get('*', function(req, res) {
-//  res.render('index')
-//});
 
 var port = process.env.PORT || 3003;
 app.listen(port);

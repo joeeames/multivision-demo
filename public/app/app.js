@@ -7,3 +7,6 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     //.otherwise({redirectTo: '/'});
 });
 
+
+
+
