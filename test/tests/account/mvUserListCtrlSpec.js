@@ -1,12 +1,11 @@
 describe('mvUserListCtrl', function() {
-
   beforeEach(module('app'));
 
   beforeEach(inject(function($controller) {
     this.$controller = $controller;
   }));
 
-  describe('constructor', function() {
+  describe('Constructor', function() {
     it('should set the users collection to the result of the User service query', function() {
       var mockUserSvc = sinon.stub({query: function() {}});
       var mockUsersCollection = [];
@@ -17,5 +16,6 @@ describe('mvUserListCtrl', function() {
 
       expect(mockScope.users).to.equal(mockUsersCollection);
     });
-  })
-})
+  });
+
+});

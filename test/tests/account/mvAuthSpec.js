@@ -13,13 +13,22 @@ describe('mvAuth', function() {
       });
     });
 
-    it('should set the currentIdentity to the returned user', inject(function($httpBackend, mvAuth) {
-      $httpBackend.when('POST', '/login').respond({user:{a:true}})
+    it('should set the currentIdentity to the returned user when success is true', inject(function($httpBackend, mvAuth) {
+      $httpBackend.when('POST', '/login').respond({success:true,user:{a:true}})
 
       mvAuth.authenticateUser();
       $httpBackend.flush();
 
       expect(this.mockIdentity.currentUser.a).to.be.true;
+    }));
+
+    it('should NOT set the currentIdentity to the returned user when success is false', inject(function($httpBackend, mvAuth) {
+      $httpBackend.when('POST', '/login').respond({success:false})
+
+      mvAuth.authenticateUser();
+      $httpBackend.flush();
+
+      expect(this.mockIdentity.currentUser).to.be.undefined;
     }));
   });
 });
