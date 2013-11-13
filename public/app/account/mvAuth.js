@@ -6,7 +6,6 @@ angular.module('app').factory('mvAuth', function($http, $q, mvIdentity, mvUser, 
         var user = new mvUser();
         angular.extend(user, response.data.user);
         mvIdentity.currentUser = user;
-        console.log(mvIdentity);
         dfd.resolve(response.data);
       });
       return dfd.promise;
@@ -18,11 +17,6 @@ angular.module('app').factory('mvAuth', function($http, $q, mvIdentity, mvUser, 
         dfd.resolve();
       });
       return dfd.promise;
-    },
-    requiresRole: function(role) {
-      if(!mvIdentity.isAuthorized(role)) {
-        $location.path('/');
-      }
     },
     authorizeCurrentUserForRoute: function(role) {
       if(mvIdentity.isAuthorized(role)) {

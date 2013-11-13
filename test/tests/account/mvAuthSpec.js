@@ -13,21 +13,13 @@ describe('mvAuth', function() {
       });
     });
 
-    beforeEach(inject(function($httpBackend, mvAuth, $rootScope) {
-        this.$httpBackend = $httpBackend;
-        this.mvAuth = mvAuth;
-        this.$rootScope = $rootScope;
-    }));
+    it('should set the currentIdentity to the returned user', inject(function($httpBackend, mvAuth) {
+      $httpBackend.when('POST', '/login').respond({user:{a:true}})
 
-    it('should set the currentIdentity to the returned user', function() {
-      var responseUser = {a:true}
-      this.$httpBackend.when('POST', '/login').respond({user:responseUser})
-
-      this.mvAuth.authenticateUser();
-      this.$httpBackend.flush();
-      this.$rootScope.$apply();
+      mvAuth.authenticateUser();
+      $httpBackend.flush();
 
       expect(this.mockIdentity.currentUser.a).to.be.true;
-    });
+    }));
   });
 });
