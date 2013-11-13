@@ -1,6 +1,8 @@
 var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-module.exports = function(app, passport, Users) {
+module.exports = function(app, passport) {
 
   app.use(function(req, res, next) {
     req.passport = passport;
@@ -10,16 +12,14 @@ module.exports = function(app, passport, Users) {
   passport.use(new LocalStrategy(
     function(username, password, done) {
       var matchingUser;
-      Users.forEach(function(user) {
-        if(user.username.toLowerCase() == username) {
-          matchingUser = user;
+      User.findOne({userName:username}).exec(function(err, user) {
+        if(user) {
+          return done(null, user);
+        } else {
+          return done(null, false);
         }
-      });
-      if(matchingUser) {
-        return done(null, matchingUser);
-      } else {
-        return done(null, false);
-      }
+
+      })
     }
   ));
 
@@ -30,15 +30,13 @@ module.exports = function(app, passport, Users) {
   });
 
   passport.deserializeUser(function(id, done) {
-    console.log('deserializing: ' + id);
     var matchingUser;
-    Users.forEach(function(user) {
-      if(user._id == id) {
-        matchingUser = user;
+    User.findOne({_id:id}).exec(function(err, user) {
+      if(user) {
+        return done(null, user);
+      } else {
+        return done(null, false);
       }
     });
-    if(matchingUser) {
-      return done(null, matchingUser);
-    }
   })
 }

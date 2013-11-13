@@ -1,16 +1,21 @@
 var auth = require('./auth');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-module.exports = function(app, Users) {
+module.exports = function(app) {
 
   // users
   app.get('/api/users', auth.requiresApiLogin, function(req, res) {
-    res.send(Users);
+    User.find().exec(function(err, collection) {
+      res.send(collection);
+    })
   })
 
 
   app.post('/login', auth.authenticate);
 
   app.post('/logout', function(req, res) {
+    console.log('logging out');
     req.logout();
     res.redirect('/');
   });

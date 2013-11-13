@@ -3,9 +3,11 @@ angular.module('app').factory('mvAuth', function($http, $q, mvIdentity, mvUser, 
     authenticateUser: function(username, password) {
       var dfd = $q.defer();
       $http.post('/login', {username: username, password:password}).then(function(response) {
-        var user = new mvUser();
-        angular.extend(user, response.data.user);
-        mvIdentity.currentUser = user;
+        if(response.data.success) {
+          var user = new mvUser();
+          angular.extend(user, response.data.user);
+          mvIdentity.currentUser = user;
+        }
         dfd.resolve(response.data);
       });
       return dfd.promise;
