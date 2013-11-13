@@ -11,7 +11,10 @@ var app = express();
 
 require('./server/config/express')(app, passport, config);
 
-mongoose.connect('mongodb://localhost/multivision');
+
+//mongoose.connect('mongodb://localhost/multivision');
+mongoose.connect('mongodb://jeames:multiview@ds053188.mongolab.com:53188/multiview');
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
