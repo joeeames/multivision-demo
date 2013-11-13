@@ -1,20 +1,18 @@
 var express = require('express'),
   passport = require('passport'),
-  config = require('./server/config/config'),
   mongoose = require('mongoose');
 
 
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var config = require('./server/config/config')[env]
 
 var app = express();
 
 require('./server/config/express')(app, passport, config);
 
 
-//mongoose.connect('mongodb://localhost/multivision');
-mongoose.connect('mongodb://jeames:multiview@ds053188.mongolab.com:53188/multiview');
-
+mongoose.connect(config.db);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
