@@ -9,23 +9,23 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      '../../public/vendor/angular/angular.js',
-      '../../public/vendor/angular-resource/angular-resource.js',
-      '../../public/vendor/angular-mocks/angular-mocks.js',
-      'test-app.js',
-      '../../public/app/**/*.js',
-      '../../test/tests/**/*.js'
+      'public/vendor/angular/angular.js',
+      'public/vendor/angular-resource/angular-resource.js',
+      'public/vendor/angular-mocks/angular-mocks.js',
+      'test/test-app.js',
+      'public/app/**/*.js',
+      'test/tests/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      '../../public/app/app.js',
+      'public/app/app.js',
     ],
 
 

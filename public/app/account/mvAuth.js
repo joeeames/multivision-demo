@@ -6,6 +6,7 @@ angular.module('app').factory('mvAuth', function($http, $q, mvIdentity, mvUser, 
         var user = new mvUser();
         angular.extend(user, response.data.user);
         mvIdentity.currentUser = user;
+        console.log(mvIdentity);
         dfd.resolve(response.data);
       });
       return dfd.promise;

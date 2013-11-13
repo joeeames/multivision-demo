@@ -1,21 +1,23 @@
 
-describe('userData', function() {
-  var userDataSvc, mockUserResource;
+describe('mvUser', function() {
 
   beforeEach(module('app'));
 
-  beforeEach(inject(function(/*userData, userResource*/) {
-//    mockUserResource = userResource;
-//    userResource.get = sinon.stub();
-//    userResource.save = sinon.stub();
-//    userDataSvc = userData;
-  }));
+  describe('isAdmin', function() {
 
-  describe('getUser', function() {
-
-    it('should run', inject(function() {
-
-      expect(1).toEqual(1);
+    it('should return false if there is no roles array', inject(function(mvUser) {
+      var user = new mvUser();
+      expect(user.isAdmin()).to.be.falsey
+    }));
+    it("should return false if the roles array doesn't have an admin entry", inject(function(mvUser) {
+      var user = new mvUser();
+      user.roles = ['not admin'];
+      expect(user.isAdmin()).to.be.falsey
+    }));
+    it("should return true if the roles array has an admin entry", inject(function(mvUser) {
+      var user = new mvUser();
+      user.roles = ['admin'];
+      expect(user.isAdmin()).to.be.true;
     }));
   });
 });
