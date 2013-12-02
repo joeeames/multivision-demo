@@ -10,7 +10,7 @@ module.exports = function(app) {
       res.send(collection);
     })
   })
-
+z
 
   app.post('/login', auth.authenticate);
 

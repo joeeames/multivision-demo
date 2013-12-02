@@ -7,10 +7,12 @@ div.navbar-right(ng-controller="mvNavBarLoginCtrl")
     button.btn.btn-primary(ng-click="signin(username, password)") Sign in
   ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
     li.dropdown
-      a.dropdown-toggle(href="", data-toggle="dropdown", ng-click="logout()") {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
+      a.dropdown-toggle(href="", data-toggle="dropdown") {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
         b.caret
       ul.dropdown-menu
         li(ng-show="identity.currentUser.isAdmin()")
           a(href="/admin/users") user admin
         li
           a(href="", ng-click="signout()") signout
+
+
