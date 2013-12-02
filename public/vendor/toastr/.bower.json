@@ -17,6 +17,5 @@
   },
   "_source": "git://github.com/johnpapa/toastr-bower.git",
   "_target": "~2.0.1",
-  "_originalSource": "toastr",
-  "_direct": true
+  "_originalSource": "toastr"
 }

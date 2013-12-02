@@ -1,0 +1,6 @@
+.panel.panel-primary
+  .panel-heading.text-center New Courses
+  .panel-body
+    .row(ng-repeat="course in courses | orderBy:'published':true | limitTo:10")
+      .col-md-3 {{course.published | date:'MMM d'}}
+      .col-md-9 {{course.name}}

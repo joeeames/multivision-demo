@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Tue Nov 12 2013 14:23:14 GMT-0700 (Mountain Standard Time)
+// Generated on Tue Nov 26 2013 13:55:48 GMT-0700 (Mountain Standard Time)
 
 module.exports = function(config) {
   config.set({
@@ -25,7 +25,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'public/app/app.js',
+      'public/app/app.js'
     ],
 
 
@@ -55,10 +55,10 @@ module.exports = function(config) {
     // - Chrome
     // - ChromeCanary
     // - Firefox
-    // - Opera
-    // - Safari (only Mac)
+    // - Opera (has to be installed with `npm install karma-opera-launcher`)
+    // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
-    // - IE (only Windows)
+    // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
     browsers: ['Chrome'],
 
 
