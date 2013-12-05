@@ -39,9 +39,9 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
         dfd.resolve();
       });
 
-
       return dfd.promise;
     },
+
     logoutUser: function() {
       var dfd = $q.defer();
       $http.post('/logout', {logout:true}).then(function() {
