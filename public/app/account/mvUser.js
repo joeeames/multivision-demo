@@ -1,5 +1,5 @@
 angular.module('app').factory('mvUser', function($resource) {
-  var UserResource = $resource('/api/users/:id', {_id: "@id"}, {
+  var UserResource = $resource('/api/users/:_id', {_id: "@id"}, {
     update: {method:'PUT',isArray:false}
   });
 
